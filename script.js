@@ -1,5 +1,7 @@
 let myLibrary = ["Atomic Habits", "Dogman", "The Stand"];
 
+const bookSection = document.querySelector('.book-cards');
+
 function Book() {
     this.title = title;
 }
