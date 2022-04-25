@@ -67,18 +67,36 @@ header {
     align-items: center;
     gap: 1rem;
     padding-top: 1rem;
-    color: white;
+    padding-bottom: 1rem;
+    border-bottom: 1px solid black;
 }
 
 /*  =============================
     Body
     ============================= */
 
-body {
-    background: rgb(32, 32, 113);
-}
 
 /*  =============================
     Main
     ============================= */
 
+main {
+    padding: 2rem;
+}
+
+.book-section {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(9rem, 1fr));
+    gap: 1rem;
+}
+
+.book-cards {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
+    border: 1px solid red;
+    border-radius: 5px;
+    padding: 1rem;
+}

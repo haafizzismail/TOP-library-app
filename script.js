@@ -1,6 +1,6 @@
 let myLibrary = ["Atomic Habits", "Dogman", "The Stand"];
 
-const bookSection = document.querySelector('.book-cards');
+const bookSection = document.querySelector('.book-section');
 
 function Book() {
     this.title = title;
