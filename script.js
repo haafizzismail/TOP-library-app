@@ -1,6 +1,9 @@
 let myLibrary = [];
 
 const bookSection = document.querySelector('.book-section');
+const newBookBtn = document.querySelector('.newBook');
+
+newBookBtn.addEventListener('click', addBookToLibrary);
 
 function Book(title, author, read) {
     this.title = title;
@@ -14,14 +17,7 @@ function addBookToLibrary() {
     let newRead = prompt("Read the book? (y/n)");
     const book1 = new Book(newTitle, newAuthor, newRead);
     myLibrary.push(book1);
-    displayBooks();
-}
-
-function displayBooks() {
-    myLibrary.forEach(book => {
-        addNewCard(book.title, book.author, book.read);
-
-    });
+    addNewCard(newTitle, newAuthor, newRead);
 }
 
 function addNewCard(title, author, read) {
