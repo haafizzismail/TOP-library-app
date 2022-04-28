@@ -2,8 +2,13 @@ let myLibrary = [];
 
 const bookSection = document.querySelector('.book-section');
 const newBookBtn = document.querySelector('.newBook');
+const removeBtn = document.querySelectorAll('.remove');
 
 newBookBtn.addEventListener('click', addBookToLibrary);
+
+removeBtn.forEach(btn => {
+    btn.addEventListener('click', e => console.log(e));
+});
 
 function Book(title, author, read) {
     this.title = title;
@@ -35,6 +40,9 @@ function addNewCard(title, author, read) {
     const removeButton = document.createElement('button');
     const readText = document.createTextNode('Read');
     const removeText = document.createTextNode('Remove');
+    removeButton.classList.add('remove');
+    removeButton.addEventListener('click', removeCard);
+
     readButton.appendChild(readText);
     removeButton.appendChild(removeText);
     bookSection.appendChild(newDiv);
@@ -43,4 +51,9 @@ function addNewCard(title, author, read) {
     newDiv.appendChild(newAuthor);
     newDiv.appendChild(readButton);
     newDiv.appendChild(removeButton);
+}
+
+function removeCard() {
+    const card = document.querySelector('.book-cards');
+    card.remove();
 }
