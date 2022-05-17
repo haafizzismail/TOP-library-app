@@ -12,44 +12,28 @@
             <h1>My Librarian is a Robot</h1>
             <button class="newBook">NEW BOOK</button>
         </header>
-        <main class="book-section">
-            <div class="book-cards">
-                <span>Atomic Habits</span>
-                <span>James Clear</span>
-                <button>Read</button>
-                <button class="remove">Remove</button>
-            </div>
-            <div class="book-cards">
-                <span>Cross Country</span>
-                <span>James Patterson</span>
-                <button>Read</button>
-                <button class="remove">Remove</button>
-            </div>
-            <div class="book-cards">
-                <span>Emergency Deep</span>
-                <span>Michael DiMercurio</span>
-                <button>Read</button>
-                <button class="remove">Remove</button>
-            </div>
-            <div class="book-cards">
-                <span>The Reversal</span>
-                <span>Michael Connelly</span>
-                <button>Read</button>
-                <button class="remove">Remove</button>
-            </div>
-            <div class="book-cards">
-                <span>The Stand</span>
-                <span>Stephen King</span>
-                <button>Read</button>
-                <button class="remove">Remove</button>
-            </div>
-            <div class="book-cards">
-                <span>One Shot</span>
-                <span>Lee Child</span>
-                <button>Read</button>
-                <button class="remove">Remove</button>
-            </div>
-        </main>
+        <main class="book-section"></main>
+        <div class="modal-bg">
+            <form class="modal">
+                <h2>Fill in below to add a book.</h2>
+                <div>
+                    <label for="title">Title:</label>
+                    <input type="text" id="title">
+                </div>
+                <div>
+                    <label for="author">Author:</label>
+                    <input type="text" id="author">
+                </div>
+                <fieldset>
+                    <legend>Read?</legend>
+                    <input type="radio" id="yes" value="yes">
+                    <label for="yes">Yes</label>
+                    <input type="radio" id="no" value="no">
+                    <label for="no">No</label>
+                </fieldset>
+                <button>Submit</button>
+            </form>
+        </div>
         <script src="script.js"></script>
     </body>
 </html>

@@ -1,59 +1,56 @@
-let myLibrary = [];
+// storing books in this array
+const myLibrary = [
+    {
+        title: 'Atomic Habits',
+        author: 'James Clear',
+        read: 'no'
+    },
+    {
+        title: 'Cross Country',
+        author: 'James Patterson',
+        read: 'no'
+    },
+    {
+        title: 'Emergency Deep',
+        author: 'Michael DiMercurio',
+        read: 'yes'
+    }
+];
 
-const bookSection = document.querySelector('.book-section');
-const newBookBtn = document.querySelector('.newBook');
-const removeBtn = document.querySelectorAll('.remove');
-
-newBookBtn.addEventListener('click', addBookToLibrary);
-
-removeBtn.forEach(btn => {
-    btn.addEventListener('click', e => console.log(e));
-});
-
+// Book constructor
 function Book(title, author, read) {
     this.title = title;
     this.author = author;
     this.read = read;
 }
 
+// Add Book to myLibrary array
 function addBookToLibrary() {
     let newTitle = prompt("Title of book?");
     let newAuthor = prompt("Author of book?");
     let newRead = prompt("Read the book? (y/n)");
     const book1 = new Book(newTitle, newAuthor, newRead);
     myLibrary.push(book1);
-    addNewCard(newTitle, newAuthor, newRead);
 }
 
-function addNewCard(title, author, read) {
-    const newDiv = document.createElement('div');
-    newDiv.classList.add('book-cards');
+// Display Books Added
+function displayBooks(book) {
+    const container = document.querySelector('.book-section');
+    myLibrary.forEach((book) => {
+        const card = document.createElement('div');
+        card.classList.add('book-cards');
 
-    const newTitle = document.createElement('span');
-    const newAuthor = document.createElement('span');
-    const newTitleText = document.createTextNode(title);
-    const newAuthorText = document.createTextNode(author);
-    newTitle.appendChild(newTitleText);
-    newAuthor.appendChild(newAuthorText);
+        card.innerHTML = `
+            <span>${book.title}</span>
+            <span>${book.author}</span>
+            <span>Read? ${book.read}</span>
+            <button>Read</button>
+            <button class="remove">Remove</button>
+        `;
 
-    const readButton = document.createElement('button');
-    const removeButton = document.createElement('button');
-    const readText = document.createTextNode('Read');
-    const removeText = document.createTextNode('Remove');
-    removeButton.classList.add('remove');
-    removeButton.addEventListener('click', removeCard);
-
-    readButton.appendChild(readText);
-    removeButton.appendChild(removeText);
-    bookSection.appendChild(newDiv);
-
-    newDiv.appendChild(newTitle);
-    newDiv.appendChild(newAuthor);
-    newDiv.appendChild(readButton);
-    newDiv.appendChild(removeButton);
+        container.appendChild(card);
+    });
 }
 
-function removeCard() {
-    const card = document.querySelector('.book-cards');
-    card.remove();
-}
+// Display Books on Load
+document.addEventListener('DOMContentLoaded', displayBooks);
