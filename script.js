@@ -24,6 +24,11 @@ function Book(title, author, read) {
     this.read = read;
 }
 
+// Clicking New Book to bring modal out
+function newBook() {
+
+}
+
 // Add Book to myLibrary array
 function addBookToLibrary() {
     let newTitle = prompt("Title of book?");
@@ -54,3 +59,18 @@ function displayBooks(book) {
 
 // Display Books on Load
 document.addEventListener('DOMContentLoaded', displayBooks);
+
+// Display Modal on New Book Button Click
+const newBookBtn = document.querySelector('.newBook');
+const modalBg = document.querySelector('.modal-bg');
+
+newBookBtn.addEventListener('click', function() {
+    modalBg.classList.add('modal-bg-active');
+});
+
+// Close Modal
+const modalClose = document.querySelector('.modal-close');
+
+modalClose.addEventListener('click', function() {
+    modalBg.classList.remove('modal-bg-active');
+});
