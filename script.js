@@ -24,20 +24,6 @@ function Book(title, author, read) {
     this.read = read;
 }
 
-// Clicking New Book to bring modal out
-function newBook() {
-
-}
-
-// Add Book to myLibrary array
-function addBookToLibrary() {
-    let newTitle = prompt("Title of book?");
-    let newAuthor = prompt("Author of book?");
-    let newRead = prompt("Read the book? (y/n)");
-    const book1 = new Book(newTitle, newAuthor, newRead);
-    myLibrary.push(book1);
-}
-
 // Display Books Added
 function displayBooks(book) {
     const container = document.querySelector('.book-section');
@@ -73,4 +59,23 @@ const modalClose = document.querySelector('.modal-close');
 
 modalClose.addEventListener('click', function() {
     modalBg.classList.remove('modal-bg-active');
+});
+
+// Add Book
+const form = document.querySelector('.modal');
+
+form.addEventListener('submit', (e) => {
+    // Prevent actual submit
+    e.preventDefault();
+    
+    // Get form values
+    const title = document.querySelector('#title').value;
+    const author = document.querySelector('#author').value;
+    const read = document.querySelector('input[name="read"]:checked').value;
+    
+    // Instantiate a Book
+    const book = new Book(title, author, read);
+
+    // Add book to myLibrary Array
+    displayBooks(book);
 });
