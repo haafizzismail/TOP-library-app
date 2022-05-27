@@ -26,9 +26,11 @@ function Book(title, author, read) {
 
 // Display Books Added
 function displayBooks(book) {
-    const container = document.querySelector('.book-section');
-    myLibrary.forEach((book) => {
-        const card = document.createElement('div');
+    myLibrary.forEach((book) => addBookToList(book));
+}
+
+function addBookToList(book) {
+    const container = document.querySelector('.book-section');const card = document.createElement('div');
         card.classList.add('book-cards');
 
         card.innerHTML = `
@@ -40,7 +42,18 @@ function displayBooks(book) {
         `;
 
         container.appendChild(card);
-    });
+}
+
+// Clear form fields
+function clearFields() {
+    document.querySelector('#title').value = '';
+    document.querySelector('#author').value = '';
+    document.querySelector('input[name="read"]').checked = false;
+}
+
+// Close Modal
+function closeModal() {
+    document.querySelector('.modal-bg').classList.remove('modal-bg-active');
 }
 
 // Display Books on Load
@@ -54,11 +67,11 @@ newBookBtn.addEventListener('click', function() {
     modalBg.classList.add('modal-bg-active');
 });
 
-// Close Modal
+// Close Modal by X icon
 const modalClose = document.querySelector('.modal-close');
-
+    
 modalClose.addEventListener('click', function() {
-    modalBg.classList.remove('modal-bg-active');
+    closeModal();
 });
 
 // Add Book
@@ -77,5 +90,14 @@ form.addEventListener('submit', (e) => {
     const book = new Book(title, author, read);
 
     // Add book to myLibrary Array
-    displayBooks(book);
+    myLibrary.push(book);
+
+    // Add book to UI
+    addBookToList(book);
+
+    // clear form Fields
+    clearFields();
+
+    // close Modal
+    closeModal();
 });
