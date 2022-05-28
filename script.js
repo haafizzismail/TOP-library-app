@@ -56,6 +56,22 @@ function closeModal() {
     document.querySelector('.modal-bg').classList.remove('modal-bg-active');
 }
 
+// Remove book
+function removeBook(el) {
+    if (el.classList.contains('remove')) {
+        el.parentElement.remove();
+    }
+}
+
+// Delete book from array
+function deleteBook(title) {
+    myLibrary.forEach((book, index) => {
+        if (book.title === title) {
+            myLibrary.splice(index, 1);
+        }
+    }); 
+}
+
 // Display Books on Load
 document.addEventListener('DOMContentLoaded', displayBooks);
 
@@ -100,4 +116,15 @@ form.addEventListener('submit', (e) => {
 
     // close Modal
     closeModal();
+});
+
+// Remove book
+const bookCards = document.querySelector('.book-section');
+
+bookCards.addEventListener('click', (e) => {
+    //remove book from UI
+    removeBook(e.target);
+
+    //remove book from myLibrary array
+    deleteBook(e.target.parentElement.firstElementChild.textContent);
 });
