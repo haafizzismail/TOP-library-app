@@ -96,9 +96,13 @@ main {
     justify-content: center;
     align-items: center;
     gap: 1rem;
-    border: 1px solid red;
+    border: 2px solid red;
     border-radius: 5px;
     padding: 1rem;
+}
+
+.book-read {
+    border: 2px solid green;
 }
 
 .modal-bg {

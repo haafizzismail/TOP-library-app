@@ -37,7 +37,7 @@ function addBookToList(book) {
             <span>${book.title}</span>
             <span>${book.author}</span>
             <span>Read? ${book.read}</span>
-            <button>Read</button>
+            <button class="read">Read</button>
             <button class="remove">Remove</button>
         `;
 
@@ -70,6 +70,15 @@ function deleteBook(title) {
             myLibrary.splice(index, 1);
         }
     }); 
+}
+
+// Toggle read status
+function toggleRead(el) {
+    if (el.classList.contains('read') && el.parentElement.classList.contains('book-read')) {
+        el.parentElement.classList.remove('book-read');  
+    } else if (el.classList.contains('read') && !el.classList.contains('book-read')) {
+        el.parentElement.classList.add('book-read');
+    }
 }
 
 // Display Books on Load
@@ -127,4 +136,9 @@ bookCards.addEventListener('click', (e) => {
 
     //remove book from myLibrary array
     deleteBook(e.target.parentElement.firstElementChild.textContent);
+});
+
+// Toggle read status
+bookCards.addEventListener('click', (e) => {
+    toggleRead(e.target);
 });
