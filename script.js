@@ -74,11 +74,15 @@ function deleteBook(title) {
 
 // Toggle read status
 function toggleRead(el) {
-    if (el.classList.contains('read') && el.parentElement.classList.contains('book-read')) {
-        el.parentElement.classList.remove('book-read');  
-    } else if (el.classList.contains('read') && !el.classList.contains('book-read')) {
-        el.parentElement.classList.add('book-read');
-    }
+    myLibrary.forEach((book) => {
+        if (book.read === 'no') {
+            book.read = 'yes';
+            el.parentElement.classList.add('book-read');
+        } else if (book.read === 'yes') {
+            book.read = 'no';
+            el.parentElement.classList.remove('book-read');
+        }
+    });
 }
 
 // Display Books on Load
@@ -135,10 +139,17 @@ bookCards.addEventListener('click', (e) => {
     removeBook(e.target);
 
     //remove book from myLibrary array
-    deleteBook(e.target.parentElement.firstElementChild.textContent);
+    if (e.target.classList.contains('remove')) {
+     deleteBook(e.target.parentElement.firstElementChild.textContent);   
+    }
 });
 
 // Toggle read status
 bookCards.addEventListener('click', (e) => {
-    toggleRead(e.target);
+    if (e.target.classList.contains('read')) {
+        toggleRead(e.target);
+    }
 });
+
+
+// todo: clicking read button is buggy. 
