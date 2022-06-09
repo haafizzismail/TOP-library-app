@@ -3,17 +3,17 @@ const myLibrary = [
     {
         title: 'Atomic Habits',
         author: 'James Clear',
-        read: 'no'
+        read: false
     },
     {
         title: 'Cross Country',
         author: 'James Patterson',
-        read: 'no'
+        read: false
     },
     {
         title: 'Emergency Deep',
         author: 'Michael DiMercurio',
-        read: 'yes'
+        read: true
     }
 ];
 
@@ -24,21 +24,22 @@ function Book(title, author, read) {
     this.read = read;
 }
 
+
 // Display Books Added
 function displayBooks(book) {
     myLibrary.forEach((book) => addBookToList(book));
 }
 
 function addBookToList(book) {
-    const container = document.querySelector('.book-section');const card = document.createElement('div');
+    const container = document.querySelector('.book-section');
+    const card = document.createElement('div');
         card.classList.add('book-cards');
 
         card.innerHTML = `
             <span>${book.title}</span>
             <span>${book.author}</span>
-            <span>Read? ${book.read}</span>
-            <button class="read">Read</button>
-            <button class="remove">Remove</button>
+            <button class="not-read">NOT READ</button>
+            <button class="remove">REMOVE</button>
         `;
 
         container.appendChild(card);
@@ -63,6 +64,20 @@ function removeBook(el) {
     }
 }
 
+// Toggle read status 
+function toggleRead(el) {
+    if (el.classList.contains('completed')) {
+        el.parentElement.classList.remove('book-read');
+        el.classList.remove('completed');
+        el.textContent = 'NOT READ';
+    }
+    else if (!el.classList.contains('completed') && el.classList.contains('not-read')) {
+        el.parentElement.classList.add('book-read');
+        el.classList.add('completed');
+        el.textContent = 'COMPLETED';
+    }
+}
+
 // Delete book from array
 function deleteBook(title) {
     myLibrary.forEach((book, index) => {
@@ -70,19 +85,6 @@ function deleteBook(title) {
             myLibrary.splice(index, 1);
         }
     }); 
-}
-
-// Toggle read status
-function toggleRead(el) {
-    myLibrary.forEach((book) => {
-        if (book.read === 'no') {
-            book.read = 'yes';
-            el.parentElement.classList.add('book-read');
-        } else if (book.read === 'yes') {
-            book.read = 'no';
-            el.parentElement.classList.remove('book-read');
-        }
-    });
 }
 
 // Display Books on Load
@@ -146,10 +148,14 @@ bookCards.addEventListener('click', (e) => {
 
 // Toggle read status
 bookCards.addEventListener('click', (e) => {
-    if (e.target.classList.contains('read')) {
-        toggleRead(e.target);
-    }
+    // add/remove read class
+    toggleRead(e.target);
+
+    // change read status in object library
+    book.read =  
 });
 
 
-// todo: clicking read button is buggy. 
+// change how they are displayed based on read status at first
+// beautify modal
+// add errors for empty modals
