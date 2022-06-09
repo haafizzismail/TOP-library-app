@@ -219,3 +219,9 @@ fieldset {
     border: 1px solid black;
     color: white;
 }
+
+.error {
+    color: white;
+    background: red;
+    padding: 1rem;
+}

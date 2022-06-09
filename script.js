@@ -95,6 +95,17 @@ function deleteBook(title) {
     }); 
 }
 
+// alert for error during submitting new book
+function showAlert(msg) {
+    const div = document.createElement('div');
+    div.classList.add('error');
+    div.appendChild(document.createTextNode(msg));
+    const modalClose = document.querySelector('.modal-close');
+    const form = document.querySelector('.modal');
+    form.insertBefore(div, modalClose);
+    setTimeout(() => document.querySelector('.error').remove(), 5000);
+}
+
 // Display Books on Load
 document.addEventListener('DOMContentLoaded', displayBooks);
 
@@ -125,20 +136,25 @@ form.addEventListener('submit', (e) => {
     const author = document.querySelector('#author').value;
     const read = document.querySelector('input[name="read"]:checked').value;
     
-    // Instantiate a Book
-    const book = new Book(title, author, read);
+    if (title && author) {
+        // Instantiate a Book
+        const book = new Book(title, author, read);
 
-    // Add book to myLibrary Array
-    myLibrary.push(book);
+        // Add book to myLibrary Array
+        myLibrary.push(book);
 
-    // Add book to UI
-    addBookToList(book);
+        // Add book to UI
+        addBookToList(book);
 
-    // clear form Fields
-    clearFields();
+        // clear form Fields
+        clearFields();
 
-    // close Modal
-    closeModal();
+        // close Modal
+        closeModal();
+    } 
+    else {
+        showAlert('Please fill in all fields');
+    } 
 });
 
 // Remove book
