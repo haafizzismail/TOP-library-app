@@ -24,6 +24,14 @@ function Book(title, author, read) {
     this.read = read;
 }
 
+//Book toggle prototype
+Book.prototype.toggle = function(book) {
+    if (this.read === false) {
+        this.read = true;
+    } else if (this.read === true) {
+        this.read = false;
+    }
+}
 
 // Display Books Added
 function displayBooks(book) {
@@ -152,10 +160,9 @@ bookCards.addEventListener('click', (e) => {
     toggleRead(e.target);
 
     // change read status in object library
-    book.read =  
+    console.log(this);
 });
 
 
 // change how they are displayed based on read status at first
-// beautify modal
 // add errors for empty modals

@@ -168,13 +168,15 @@ main {
 
 .modal {
     position: relative;
-    background: white;
-    width: 40%;
-    height: 20%;
+    background: rgb(220, 240, 217);
+    width: 20rem;
+    height: 20rem;
     display: flex;
     flex-direction: column;
-    justify-content: space-around;
+    justify-content: center;
     align-items: center;
+    gap: 1rem;
+    padding: 0 1rem;
 }
 
 .modal-close {
@@ -183,4 +185,37 @@ main {
     right: 10px;
     font-weight: bold;
     cursor: pointer;
+}
+
+.form-bar {
+    width: 100%;    
+    display: flex;
+    align-items: center;
+}
+
+.form-bar input {
+    width: 100%;
+    height: 1.4rem;
+}
+
+.form-title input {
+    margin-left: 1.2rem;
+}
+
+.form-author input {
+    margin-left: .2rem;
+}
+
+fieldset {
+    display: flex;
+    justify-content: center;
+    padding: .8rem;
+}
+
+.submit-btn {
+    width: 9rem;
+    height: 2rem;
+    background: rgb(38, 95, 181);
+    border: 1px solid black;
+    color: white;
 }
