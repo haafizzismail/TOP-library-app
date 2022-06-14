@@ -24,15 +24,6 @@ function Book(title, author, read) {
     this.read = read;
 }
 
-//Book toggle prototype
-Book.prototype.toggle = function(book) {
-    if (this.read === false) {
-        this.read = true;
-    } else if (this.read === true) {
-        this.read = false;
-    }
-}
-
 // Display Books Added
 function displayBooks(book) {
     myLibrary.forEach((book) => addBookToList(book));
@@ -106,6 +97,29 @@ function deleteBook(title) {
             myLibrary.splice(index, 1);
         }
     }); 
+}
+
+//find book in array
+function findBook(el) {
+    const title = el.parentNode.childNodes[1].textContent
+    if (title === null || title === undefined) {
+        return 'huh';
+    }
+    for (book of myLibrary) {
+        if (title === book.title) {
+            return myLibrary.indexOf(book);
+        }
+    }
+}
+
+//change obj.read in array
+function changeReadStatus(index) {    
+    if (myLibrary[index].read === true) {
+        myLibrary[index].read = false;
+    } 
+    else if (myLibrary[index].read === false) {
+        myLibrary[index].read = true;
+    }
 }
 
 // alert for error during submitting new book
@@ -189,8 +203,7 @@ bookCards.addEventListener('click', (e) => {
     toggleRead(e.target);
 
     // change read status in object library
-    console.log(this);
+    changeReadStatus(findBook(e.target));
 });
 
 
-// change how they are displayed based on read status at first
