@@ -43,14 +43,27 @@ function addBookToList(book) {
     const card = document.createElement('div');
         card.classList.add('book-cards');
 
-        card.innerHTML = `
-            <span>${book.title}</span>
-            <span>${book.author}</span>
-            <button class="not-read">NOT READ</button>
-            <button class="remove">REMOVE</button>
-        `;
+        if (book.read === false) {
+            card.innerHTML = `
+                <span>${book.title}</span>
+                <span>${book.author}</span>
+                <button class="not-read">NOT READ</button>
+                <button class="remove">REMOVE</button>
+            `;
+            container.appendChild(card);
+        }
+        else if (book.read === true) {
+            card.innerHTML = `
+                <span>${book.title}</span>
+                <span>${book.author}</span>
+                <button class="not-read completed">COMPLETED</button>
+                <button class="remove">REMOVE</button>
+            `;
+            card.classList.add('book-read');
+            container.appendChild(card);
+        }
 
-        container.appendChild(card);
+        
 }
 
 // Clear form fields
@@ -181,4 +194,3 @@ bookCards.addEventListener('click', (e) => {
 
 
 // change how they are displayed based on read status at first
-// add errors for empty modals
