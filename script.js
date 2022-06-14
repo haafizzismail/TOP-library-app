@@ -3,17 +3,17 @@ const myLibrary = [
     {
         title: 'Atomic Habits',
         author: 'James Clear',
-        read: false
+        read: "false"
     },
     {
         title: 'Cross Country',
         author: 'James Patterson',
-        read: false
+        read: "false"
     },
     {
         title: 'Emergency Deep',
         author: 'Michael DiMercurio',
-        read: true
+        read: "true"
     }
 ];
 
@@ -34,7 +34,7 @@ function addBookToList(book) {
     const card = document.createElement('div');
         card.classList.add('book-cards');
 
-        if (book.read === false) {
+        if (book.read === "false") {
             card.innerHTML = `
                 <span>${book.title}</span>
                 <span>${book.author}</span>
@@ -43,7 +43,7 @@ function addBookToList(book) {
             `;
             container.appendChild(card);
         }
-        else if (book.read === true) {
+        else if (book.read === "true") {
             card.innerHTML = `
                 <span>${book.title}</span>
                 <span>${book.author}</span>
@@ -61,7 +61,7 @@ function addBookToList(book) {
 function clearFields() {
     document.querySelector('#title').value = '';
     document.querySelector('#author').value = '';
-    document.querySelector('input[name="read"]').checked = false;
+    document.querySelector('input[name="read"]').checked = "false";
 }
 
 // Close Modal
@@ -114,11 +114,11 @@ function findBook(el) {
 
 //change obj.read in array
 function changeReadStatus(index) {    
-    if (myLibrary[index].read === true) {
-        myLibrary[index].read = false;
+    if (myLibrary[index].read === "true") {
+        myLibrary[index].read = "false";
     } 
-    else if (myLibrary[index].read === false) {
-        myLibrary[index].read = true;
+    else if (myLibrary[index].read === "false") {
+        myLibrary[index].read = "true";
     }
 }
 
@@ -163,7 +163,7 @@ form.addEventListener('submit', (e) => {
     const author = document.querySelector('#author').value;
     const read = document.querySelector('input[name="read"]:checked').value;
     
-    if (title && author) {
+    if (title !== '' && author !== '') {
         // Instantiate a Book
         const book = new Book(title, author, read);
 
